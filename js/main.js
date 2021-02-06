@@ -16,7 +16,7 @@ const COMMENTS = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ]
-const ids = [];
+let lastId = 0;
 const arrayObjects = [];
 
 const getRandomIntNumber = function (min, max) {
@@ -29,24 +29,9 @@ const getRandomIntNumber = function (min, max) {
   return alert('Минимальное значение должно быть меньше или рано максимальному');
 }
 
-// const checkLengthString = function (string, maxLength) {
-//   return string.length <= maxLength
-// }
-
-const checkAvailability = function (arr,val) {
-  return arr.some(function (arrVal){
-    return val === arrVal;
-  })
-}
-
-const getIdNumber = function genIdNumber() {
-  let id = getRandomIntNumber(1, ids.length + 100);
-  if (!checkAvailability(ids, id)) {
-    ids.push(id);
-    return id;
-  } else {
-    genIdNumber();
-  }
+const getIdNumber = () => {
+  lastId += 1;
+  return lastId;
 }
 
 const getComment = function () {
