@@ -21,7 +21,7 @@ const COMMENTS = [
 
 const arrayObjects = [];
 
-const getObjects = function (index) {
+const getObjects = (index) => {
   return {
     id: index,
     url:'photos/' + index + '.jpg',
@@ -31,7 +31,7 @@ const getObjects = function (index) {
   }
 }
 
-const getComment = function () {
+const getComment = () => {
   const commentsArray = [];
   for (let i = 0; i < getRandomIntNumber (1, 3); i++) {
     commentsArray.push(getCommentaries());
@@ -39,7 +39,7 @@ const getComment = function () {
   return commentsArray;
 }
 
-const getCommentaries = function () {
+const getCommentaries = () => {
   return {
     id: getIdNumber(),
     avatar: 'img/avatar-' + getRandomIntNumber(1, 6) +'.svg',

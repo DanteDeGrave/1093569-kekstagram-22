@@ -1,2 +1,2 @@
 import './utils.js';
-import './data.js';
+import './object-creator.js';

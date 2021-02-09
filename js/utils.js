@@ -1,5 +1,5 @@
 
-const getRandomIntNumber = function (min, max) {
+const getRandomIntNumber = (min, max) => {
   if (min <= max) {
     //Код частично взят из источника: https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     min = Math.round(min);
@@ -16,7 +16,7 @@ const getIdNumber = () => {
   return lastId;
 }
 
-const getArrayElements = function (array) {
+const getArrayElements = (array) => {
   return array[getRandomIntNumber(0, array.length - 1)];
 }
 
