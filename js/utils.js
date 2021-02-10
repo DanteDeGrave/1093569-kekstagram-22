@@ -9,17 +9,25 @@ const getRandomIntNumber = (min, max) => {
   return alert('Минимальное значение должно быть меньше или рано максимальному');
 }
 
-let lastId = 0;
+const getIdNumber = (max) => {
+  const ids = [];
 
-const getIdNumber = () => {
-  lastId += 1;
-  return lastId;
+  return () => {
+    let currentValue = getRandomIntNumber(1, max);
+    if (ids.length >= (max - 1 + 1)) {
+      throw new Error('Перебраны все числа из диапазона от ' + 1 + ' до ' + max);
+    }
+    while (ids.includes(currentValue)) {
+      currentValue = getRandomIntNumber(1, max);
+    }
+    ids.push(currentValue);
+    return currentValue;
+  }
 }
 
 const getArrayElements = (array) => {
   return array[getRandomIntNumber(0, array.length - 1)];
 }
-
 export {getIdNumber};
 export {getArrayElements};
 export {getRandomIntNumber};

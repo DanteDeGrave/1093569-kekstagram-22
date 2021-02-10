@@ -20,6 +20,9 @@ const COMMENTS = [
 ];
 
 const arrayObjects = [];
+const NUMBER_OF_OBJECTS = 25;
+const MAX_COMMENTS_COUNT = 3;
+const idNumberForComments = getIdNumber(NUMBER_OF_OBJECTS * MAX_COMMENTS_COUNT);
 
 const getObjects = (index) => {
   return {
@@ -33,7 +36,7 @@ const getObjects = (index) => {
 
 const getComment = () => {
   const commentsArray = [];
-  for (let i = 0; i < getRandomIntNumber (1, 3); i++) {
+  for (let i = 0; i < getRandomIntNumber (1, MAX_COMMENTS_COUNT); i++) {
     commentsArray.push(getCommentaries());
   }
   return commentsArray;
@@ -41,13 +44,13 @@ const getComment = () => {
 
 const getCommentaries = () => {
   return {
-    id: getIdNumber(),
+    id: idNumberForComments(),
     avatar: 'img/avatar-' + getRandomIntNumber(1, 6) +'.svg',
     message: getArrayElements(COMMENTS),
     name: getArrayElements(NAMES),
   }
 }
 
-for (let i = 1; i <= 25; i++) {
+for (let i = 1; i <= NUMBER_OF_OBJECTS; i++) {
   arrayObjects.push(getObjects(i));
 }
