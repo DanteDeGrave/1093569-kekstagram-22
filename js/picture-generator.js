@@ -17,11 +17,13 @@ const getPictureElement = (object) => {
   return picture;
 }
 
+
+
 const getFragmentsPicture = (objects) => {
   const fragmentsPicture = document.createDocumentFragment();
-  for (let i = 0; i < objects.length; i++) {
-    fragmentsPicture.appendChild(getPictureElement(objects[i]));
-  }
+  objects.forEach((item) => {
+    fragmentsPicture.appendChild(getPictureElement(item));
+  });
   return fragmentsPicture;
 }
 
