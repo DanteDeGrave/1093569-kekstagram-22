@@ -6,13 +6,10 @@ const photos = getArrayObjects();
 const getPictureElement = (object) => {
   const templatePicture = document.querySelector('#picture').content;
   const picture = templatePicture.cloneNode(true);
-  const pictureAddress = picture.querySelector('.picture__img');
-  const pictureLikes = picture.querySelector('.picture__likes');
-  const pictureComments = picture.querySelector('.picture__comments');
 
-  pictureAddress.src = object.url;
-  pictureComments.textContent = String(object.comments.length);
-  pictureLikes.textContent = String(object.likes);
+  picture.querySelector('.picture__img').src = object.url;
+  picture.querySelector('.picture__comments').textContent = String(object.comments.length);
+  picture.querySelector('.picture__likes').textContent = String(object.likes);
 
   return picture;
 }
