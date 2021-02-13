@@ -8,7 +8,7 @@ const getFragmentsPicture = (objects) => {
   const fragmentsPicture = document.createDocumentFragment();
   objects.forEach((element) => {
     const picture = templatePicture.cloneNode(true);
-    picture.querySelector('.picture__img').src = element.url
+    picture.querySelector('.picture__img').src = element.url;
     picture.querySelector('.picture__comments').textContent = String(element.comments.length);
     picture.querySelector('.picture__likes').textContent = String(element.likes);
     fragmentsPicture.appendChild(picture);
