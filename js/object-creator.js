@@ -1,6 +1,6 @@
-import {getIdNumber} from './utils.js';
-import {getArrayElements} from './utils.js';
-import {getRandomIntNumber} from './utils.js';
+import {getIdNumber} from './util.js';
+import {getArrayElements} from './util.js';
+import {getRandomIntNumber} from './util.js';
 
 const NAMES = [
   'Вова',
@@ -19,7 +19,6 @@ const COMMENTS = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const arrayObjects = [];
 const NUMBER_OF_OBJECTS = 25;
 const MAX_COMMENTS_COUNT = 3;
 const idNumberForComments = getIdNumber(NUMBER_OF_OBJECTS * MAX_COMMENTS_COUNT);
@@ -51,6 +50,12 @@ const getCommentaries = () => {
   }
 }
 
-for (let i = 1; i <= NUMBER_OF_OBJECTS; i++) {
-  arrayObjects.push(getObjects(i));
+const getArrayObjects = () => {
+  const arrayObjects = [];
+  for (let i = 1; i <= NUMBER_OF_OBJECTS; i++) {
+    arrayObjects.push(getObjects(i));
+  }
+  return arrayObjects;
 }
+
+export {getArrayObjects};
