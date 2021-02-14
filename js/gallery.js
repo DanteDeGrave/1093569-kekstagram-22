@@ -3,7 +3,7 @@ import {getArrayObjects} from './object-creator.js';
 const photosList = document.querySelector('.pictures');
 const photos = getArrayObjects();
 
-const getFragmentsPicture = (objects) => {
+const renderPictures = (objects) => {
   const templatePicture = document.querySelector('#picture').content;
   const fragmentsPicture = document.createDocumentFragment();
   objects.forEach((element) => {
@@ -12,9 +12,9 @@ const getFragmentsPicture = (objects) => {
     picture.querySelector('.picture__comments').textContent = String(element.comments.length);
     picture.querySelector('.picture__likes').textContent = String(element.likes);
     fragmentsPicture.appendChild(picture);
+    photosList.appendChild(fragmentsPicture);
   });
-  return fragmentsPicture;
 }
 
-photosList.appendChild(getFragmentsPicture(photos));
+renderPictures(photos);
 
