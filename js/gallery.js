@@ -11,10 +11,12 @@ const renderPictures = (objects) => {
     picture.querySelector('.picture__img').src = element.url;
     picture.querySelector('.picture__comments').textContent = String(element.comments.length);
     picture.querySelector('.picture__likes').textContent = String(element.likes);
+    // picture.addEventListener('click', () => {
+    //
+    // });
     fragmentsPicture.appendChild(picture);
-    photosList.appendChild(fragmentsPicture);
   });
+  photosList.appendChild(fragmentsPicture);
 }
 
 renderPictures(photos);
-
