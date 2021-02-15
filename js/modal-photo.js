@@ -1,4 +1,5 @@
 import {isEscEvent} from './util.js';
+
 const modalPhoto = document.querySelector('.big-picture');
 const modalPhotoImg = modalPhoto.querySelector('.big-picture__img').querySelector('img');
 const modalPhotoLikes = modalPhoto.querySelector('.likes-count');
@@ -12,6 +13,7 @@ const onPopUpEscKeydown = (evt) => {
     closeModal();
   }
 }
+
 const closeModal = () => {
   modalPhoto.classList.add('hidden');
   document.removeEventListener('keydown',onPopUpEscKeydown);
@@ -19,6 +21,7 @@ const closeModal = () => {
   modalPhoto.querySelector('.social__comments-loader').classList.remove('hidden');
   document.querySelector('body').classList.remove('modal-open');
 }
+
 const openModal = () => {
   modalPhoto.classList.remove('hidden');
   document.addEventListener('keydown',onPopUpEscKeydown);
@@ -41,11 +44,8 @@ const renderModalPicture = (object) => {
     object.comments.forEach((element) => {
       const item = document.createElement('li');
       item.classList.add('social__comment');
-      item.innerHTML = '<img class="social__picture" src="" alt="" width="35" height="35">' +
-        '<p class="social__text"></p>';
-      item.querySelector('.social__picture').src = element.avatar;
-      item.querySelector('.social__picture').alt = element.name;
-      item.querySelector('.social__text').textContent = element.message;
+      item.innerHTML = `<img class="social__picture" src="${element.avatar}" alt="${element.name}" width="35" height="35">
+      <p class="social__text">${element.message}</p>`;
       modalPhotoCommentsList.appendChild(item);
     });
   }
