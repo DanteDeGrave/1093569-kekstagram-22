@@ -1,4 +1,5 @@
 import {getArrayObjects} from './object-creator.js';
+import {renderModalPicture} from './modal-photo.js';
 
 const photosList = document.querySelector('.pictures');
 const photos = getArrayObjects();
@@ -11,9 +12,9 @@ const renderPictures = (objects) => {
     picture.querySelector('.picture__img').src = element.url;
     picture.querySelector('.picture__comments').textContent = String(element.comments.length);
     picture.querySelector('.picture__likes').textContent = String(element.likes);
-    // picture.addEventListener('click', () => {
-    //
-    // });
+    picture.addEventListener('click', () => {
+      renderModalPicture(element);
+    });
     fragmentsPicture.appendChild(picture);
   });
   photosList.appendChild(fragmentsPicture);
