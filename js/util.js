@@ -28,6 +28,9 @@ const getIdNumber = (max) => {
 const getArrayElements = (array) => {
   return array[getRandomIntNumber(0, array.length - 1)];
 }
-export {getIdNumber};
-export {getArrayElements};
-export {getRandomIntNumber};
+
+const isEscEvent = (evt) => {
+  return evt.key === ('Escape' || 'Esc');
+}
+
+export {getIdNumber, getArrayElements, getRandomIntNumber, isEscEvent};
