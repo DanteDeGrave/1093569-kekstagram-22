@@ -60,8 +60,6 @@ const onScaleControlBigger = () => {
 
 uploadImage.addEventListener('change', () => {
   modalRedactorOpen();
-  onScaleControlSmaller();
-  onScaleControlBigger();
 });
 
 modalRedactorCloseButton.addEventListener('click', () =>{
