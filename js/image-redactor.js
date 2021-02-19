@@ -1,4 +1,5 @@
 import {isEscEvent} from './util.js';
+import {getSliderOn, getSliderOff} from './image-redactor-effects.js'
 
 const imageUploadForm = document.querySelector('.img-upload__form');
 const uploadImage = imageUploadForm.querySelector('.img-upload__input');
@@ -25,6 +26,7 @@ const modalRedactorOpen = () => {
   document.addEventListener('keydown', onModalRedactorEscKeydown);
   scaleControlSmaller.addEventListener('click',onScaleControlSmaller);
   scaleControlBigger.addEventListener('click',onScaleControlBigger);
+  getSliderOn();
 }
 
 const modalRedactorClose = () => {
@@ -33,6 +35,7 @@ const modalRedactorClose = () => {
   document.removeEventListener('keydown', onModalRedactorEscKeydown);
   scaleControlSmaller.removeEventListener('click',onScaleControlSmaller);
   scaleControlBigger.removeEventListener('click',onScaleControlBigger);
+  getSliderOff();
   uploadImage.value = '';
 }
 
@@ -65,3 +68,4 @@ uploadImage.addEventListener('change', () => {
 modalRedactorCloseButton.addEventListener('click', () =>{
   modalRedactorClose();
 });
+
