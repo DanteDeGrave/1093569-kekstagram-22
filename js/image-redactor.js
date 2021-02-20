@@ -1,5 +1,5 @@
 import {isEscEvent} from './util.js';
-import {getSliderOn, getSliderOff} from './image-redactor-effects.js'
+import {getSliderOn, getSliderOff} from './image-redactor-effect.js'
 
 const imageUploadForm = document.querySelector('.img-upload__form');
 const uploadImage = imageUploadForm.querySelector('.img-upload__input');
