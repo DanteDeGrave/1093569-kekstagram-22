@@ -119,6 +119,7 @@ const getEffect = (evt)=> {
 
     case filterEffects.original.name:
       uploadPreviewPhoto.style.filter = filterEffects.original.filter;
+      effectLevel.value = '';
       break;
 
     case filterEffects.chrome.name:
