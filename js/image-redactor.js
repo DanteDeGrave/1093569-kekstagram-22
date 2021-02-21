@@ -23,6 +23,13 @@ const onModalRedactorEscKeydown = (evt) => {
   }
 }
 
+const onInputEscFocusOut = (evt) => {
+  if(isEscEvent(evt)) {
+    evt.stopPropagation();
+    evt.target.blur();
+  }
+}
+
 const modalRedactorOpen = () => {
   modalRedactorImage.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
@@ -31,6 +38,8 @@ const modalRedactorOpen = () => {
   scaleControlBigger.addEventListener('click',onScaleControlBigger);
   hashtagInput.addEventListener('input',validationHashtag);
   description.addEventListener('input', validationDescription);
+  hashtagInput.addEventListener('keydown', onInputEscFocusOut);
+  description.addEventListener('keydown', onInputEscFocusOut);
   getSliderOn();
   scaleControlValueInt = parseInt(scaleControlInput.value);
 }
@@ -43,6 +52,8 @@ const modalRedactorClose = () => {
   scaleControlBigger.removeEventListener('click',onScaleControlBigger);
   hashtagInput.removeEventListener('input',validationHashtag);
   description.removeEventListener('input', validationDescription);
+  hashtagInput.removeEventListener('keydown', onInputEscFocusOut);
+  description.removeEventListener('keydown', onInputEscFocusOut);
   getSliderOff();
   uploadPreviewPhoto.style ='';
   uploadImage.value = '';
