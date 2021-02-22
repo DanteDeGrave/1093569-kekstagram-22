@@ -7,22 +7,23 @@ const DESCRIPTION_MAX_LENGTH = 140;
 const HASHTAG_MAX_LENGTH = 20;
 const HASHTAG_MAX_COUNT = 5;
 
-const validationHashtag = () => {
-  let arrayHashTags = hashtagInput.value.toLowerCase().split(' ');
 
+
+const validationHashtag = () => {
+  let arrayHashTags = hashtagInput.value.trim().toLowerCase().split(' ');
+  const errors = [];
   arrayHashTags.forEach((element, index,array)=>{
     if (element.length >= HASHTAG_MAX_LENGTH) {
-      hashtagInput.setCustomValidity('Хештег не должен превышать 20 допустимых символов');
+      errors.push('Хештег не должен превышать 20 допустимых символов');
     } else if (array.indexOf(element) !== array.lastIndexOf(element)){
-      hashtagInput.setCustomValidity(`Хештеги ${array[array.indexOf(element)]} и ${array[array.lastIndexOf(element)]} не должны быть одинаковы`);
+      errors.push(`Хештеги ${array[array.indexOf(element)]} и ${array[array.lastIndexOf(element)]} не должны быть одинаковы`);
     } else if (array.length > HASHTAG_MAX_COUNT ) {
-      hashtagInput.setCustomValidity('Должно быть не более 5и хештегов');
+      errors.push('Должно быть не более 5и хештегов');
     } else if (!regular.exec(element) && element !== '') {
-      hashtagInput.setCustomValidity('Хештег должен начинаться с # и содержать только буквы и числа и не должен состоять только из одной решетки');
-    } else {
-      hashtagInput.setCustomValidity('');
+      errors.push('Хештег должен начинаться с # и содержать только буквы и числа и не должен состоять только из одной решетки');
     }
   });
+  hashtagInput.setCustomValidity(errors[0] || '');
   hashtagInput.reportValidity();
 }
 
