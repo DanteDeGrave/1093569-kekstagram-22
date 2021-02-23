@@ -33,4 +33,8 @@ const isEscEvent = (evt) => {
   return evt.key === ('Escape' || 'Esc');
 }
 
-export {getIdNumber, getArrayElements, getRandomIntNumber, isEscEvent};
+const validationStringLength = (string, maxLength) => {
+  return string.length > maxLength;
+}
+
+export {getIdNumber, getArrayElements, getRandomIntNumber, isEscEvent, validationStringLength};
