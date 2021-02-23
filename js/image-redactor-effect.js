@@ -61,6 +61,18 @@ const filterEffects = {
   },
 };
 
+const setAttributeEffects = (min, max , step) => {
+  effectLevel.setAttribute('min', `${min}`);
+  effectLevel.setAttribute('max', `${max}`);
+  effectLevel.setAttribute('step', `${step}`);
+}
+
+const removeAttributeEffects = () => {
+  effectLevel.removeAttribute('min');
+  effectLevel.removeAttribute('max');
+  effectLevel.removeAttribute('step');
+}
+
 /* global noUiSlider:readonly */
 
 const slider = imageUploadForm.querySelector('.effect-level__slider');
@@ -103,6 +115,7 @@ const getSliderOff = () => {
   uploadPreviewPhoto.style.filter = filterEffects.original.filter;
   uploadPreviewPhoto.className = 'img-upload__preview';
   imageUploadForm.querySelector('#effect-none').checked = true;
+  removeAttributeEffects();
   effectLevel.value = '';
 }
 
@@ -120,10 +133,12 @@ const getEffect = (evt)=> {
     case filterEffects.original.name:
       uploadPreviewPhoto.style.filter = filterEffects.original.filter;
       effectLevel.value = '';
+      removeAttributeEffects();
       break;
 
     case filterEffects.chrome.name:
       uploadPreviewPhoto.classList.add(filterEffects.chrome.className);
+      setAttributeEffects(filterEffects.chrome.min, filterEffects.chrome.max, filterEffects.chrome.step);
       slider.noUiSlider.updateOptions({
         range: {
           min: filterEffects.chrome.min,
@@ -137,6 +152,7 @@ const getEffect = (evt)=> {
 
     case filterEffects.sepia.name:
       uploadPreviewPhoto.classList.add(filterEffects.sepia.className);
+      setAttributeEffects(filterEffects.sepia.min, filterEffects.sepia.max, filterEffects.sepia.step);
       slider.noUiSlider.updateOptions({
         range: {
           min: filterEffects.sepia.min,
@@ -150,6 +166,7 @@ const getEffect = (evt)=> {
 
     case filterEffects.marvin.name:
       uploadPreviewPhoto.classList.add(filterEffects.marvin.className);
+      setAttributeEffects(filterEffects.marvin.min, filterEffects.marvin.max, filterEffects.marvin.step);
       slider.noUiSlider.updateOptions({
         range: {
           min: filterEffects.marvin.min,
@@ -163,6 +180,7 @@ const getEffect = (evt)=> {
 
     case filterEffects.phobos.name:
       uploadPreviewPhoto.classList.add(filterEffects.phobos.className);
+      setAttributeEffects(filterEffects.phobos.min, filterEffects.phobos.max, filterEffects.phobos.step);
       slider.noUiSlider.updateOptions({
         range: {
           min: filterEffects.phobos.min,
@@ -176,6 +194,7 @@ const getEffect = (evt)=> {
 
     case filterEffects.heat.name:
       uploadPreviewPhoto.classList.add(filterEffects.heat.className);
+      setAttributeEffects(filterEffects.heat.min, filterEffects.heat.max, filterEffects.heat.step);
       slider.noUiSlider.updateOptions({
         range: {
           min: filterEffects.heat.min,
