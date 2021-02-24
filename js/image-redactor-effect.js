@@ -119,6 +119,20 @@ const getSliderOff = () => {
   effectLevel.value = '';
 }
 
+const addRenderEffectRule = (obj) =>{
+  uploadPreviewPhoto.classList.add(obj.className);
+  setAttributeEffects(obj.min, obj.max, obj.step);
+  slider.noUiSlider.updateOptions({
+    range: {
+      min: obj.min,
+      max: obj.max,
+    },
+    start: obj.start,
+    step: obj.step,
+  });
+  getSliderValue(obj.filter, obj.unit);
+}
+
 const getEffect = (evt)=> {
   if (evt.target.id === filterEffects.original.name) {
     sliderArea.classList.add('hidden');
@@ -137,73 +151,23 @@ const getEffect = (evt)=> {
       break;
 
     case filterEffects.chrome.name:
-      uploadPreviewPhoto.classList.add(filterEffects.chrome.className);
-      setAttributeEffects(filterEffects.chrome.min, filterEffects.chrome.max, filterEffects.chrome.step);
-      slider.noUiSlider.updateOptions({
-        range: {
-          min: filterEffects.chrome.min,
-          max: filterEffects.chrome.max,
-        },
-        start: filterEffects.chrome.start,
-        step: filterEffects.chrome.step,
-      });
-      getSliderValue(filterEffects.chrome.filter, filterEffects.chrome.unit);
+      addRenderEffectRule(filterEffects.chrome);
       break;
 
     case filterEffects.sepia.name:
-      uploadPreviewPhoto.classList.add(filterEffects.sepia.className);
-      setAttributeEffects(filterEffects.sepia.min, filterEffects.sepia.max, filterEffects.sepia.step);
-      slider.noUiSlider.updateOptions({
-        range: {
-          min: filterEffects.sepia.min,
-          max: filterEffects.sepia.max,
-        },
-        start: filterEffects.sepia.start,
-        step: filterEffects.sepia.step,
-      });
-      getSliderValue(filterEffects.sepia.filter, filterEffects.sepia.unit);
+      addRenderEffectRule(filterEffects.sepia);
       break;
 
     case filterEffects.marvin.name:
-      uploadPreviewPhoto.classList.add(filterEffects.marvin.className);
-      setAttributeEffects(filterEffects.marvin.min, filterEffects.marvin.max, filterEffects.marvin.step);
-      slider.noUiSlider.updateOptions({
-        range: {
-          min: filterEffects.marvin.min,
-          max: filterEffects.marvin.max,
-        },
-        start: filterEffects.marvin.start,
-        step: filterEffects.marvin.step,
-      });
-      getSliderValue(filterEffects.marvin.filter, filterEffects.marvin.unit);
+      addRenderEffectRule(filterEffects.marvin);
       break;
 
     case filterEffects.phobos.name:
-      uploadPreviewPhoto.classList.add(filterEffects.phobos.className);
-      setAttributeEffects(filterEffects.phobos.min, filterEffects.phobos.max, filterEffects.phobos.step);
-      slider.noUiSlider.updateOptions({
-        range: {
-          min: filterEffects.phobos.min,
-          max: filterEffects.phobos.max,
-        },
-        start: filterEffects.phobos.start,
-        step: filterEffects.phobos.step,
-      });
-      getSliderValue(filterEffects.phobos.filter, filterEffects.phobos.unit);
+      addRenderEffectRule(filterEffects.phobos);
       break;
 
     case filterEffects.heat.name:
-      uploadPreviewPhoto.classList.add(filterEffects.heat.className);
-      setAttributeEffects(filterEffects.heat.min, filterEffects.heat.max, filterEffects.heat.step);
-      slider.noUiSlider.updateOptions({
-        range: {
-          min: filterEffects.heat.min,
-          max: filterEffects.heat.max,
-        },
-        start: filterEffects.heat.start,
-        step: filterEffects.heat.step,
-      });
-      getSliderValue(filterEffects.heat.filter, filterEffects.heat.unit);
+      addRenderEffectRule(filterEffects.heat);
       break;
   }
 }
