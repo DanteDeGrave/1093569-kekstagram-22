@@ -5,3 +5,4 @@ import './modal-photo.js';
 import './image-redactor.js';
 import './image-redactor-effect.js';
 import './image-redactor-text.js';
+import './form-modal.js';

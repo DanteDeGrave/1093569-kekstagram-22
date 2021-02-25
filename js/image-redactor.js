@@ -43,7 +43,7 @@ const modalRedactorOpen = () => {
   description.addEventListener('keydown', onInputEscFocusOut);
   getSliderOn();
   scaleControlValueInt = parseInt(scaleControlInput.value);
-  setImageRedactorFormSubmit(modalRedactorClose);
+  modalRedactorCloseButton.addEventListener('click',modalRedactorClose);
 }
 
 const modalRedactorClose = () => {
@@ -59,6 +59,7 @@ const modalRedactorClose = () => {
   getSliderOff();
   uploadPreviewPhoto.style ='';
   uploadImage.value = '';
+  imageUploadForm.reset();
 }
 
 const onScaleControlSmaller = () => {
@@ -83,14 +84,8 @@ const onScaleControlBigger = () => {
   }
 }
 
-uploadImage.addEventListener('change', () => {
-  modalRedactorOpen();
-  modalRedactorCloseButton.addEventListener('click', () =>{
-    modalRedactorClose();
-  });
-});
-
-
+uploadImage.addEventListener('change',modalRedactorOpen);
+setImageRedactorFormSubmit(modalRedactorClose);
 
 export {modalRedactorClose};
 

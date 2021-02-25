@@ -1,8 +1,8 @@
-import {renderPictures} from './gallery.js'
+import {renderPictures} from './gallery.js';
+import {messageUploadForm} from './form-modal.js';
 
 const serverUrlDownloadData = 'https://22.javascript.pages.academy/kekstagram/data';
 const serverUrlUploadData = 'https://22.javascript.pages.academy/kekstagram';
-
 
 fetch(serverUrlDownloadData)
   .then((response) => response.json())
@@ -17,7 +17,14 @@ const setImageRedactorFormSubmit = (onSuccess) => {
     fetch(serverUrlUploadData, {
       method: 'POST',
       body: formData,
-    }).then(()=>onSuccess());
+    }).then((response)=> {
+      if (response.ok) {
+        onSuccess();
+        messageUploadForm('success');
+      } else {
+        messageUploadForm('error');
+      }
+    }).catch(()=>messageUploadForm('error'));
   });
 }
 
