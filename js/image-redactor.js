@@ -1,6 +1,7 @@
 import {isEscEvent} from './util.js';
 import {getSliderOn, getSliderOff} from './image-redactor-effect.js'
 import {validationDescription, validationHashtag} from './image-redactor-text.js';
+import {setImageRedactorFormSubmit} from './api.js';
 
 const imageUploadForm = document.querySelector('.img-upload__form');
 const uploadImage = imageUploadForm.querySelector('.img-upload__input');
@@ -42,6 +43,7 @@ const modalRedactorOpen = () => {
   description.addEventListener('keydown', onInputEscFocusOut);
   getSliderOn();
   scaleControlValueInt = parseInt(scaleControlInput.value);
+  modalRedactorCloseButton.addEventListener('click',modalRedactorClose);
 }
 
 const modalRedactorClose = () => {
@@ -57,6 +59,7 @@ const modalRedactorClose = () => {
   getSliderOff();
   uploadPreviewPhoto.style ='';
   uploadImage.value = '';
+  imageUploadForm.reset();
 }
 
 const onScaleControlSmaller = () => {
@@ -81,11 +84,8 @@ const onScaleControlBigger = () => {
   }
 }
 
-uploadImage.addEventListener('change', () => {
-  modalRedactorOpen();
-});
+uploadImage.addEventListener('change',modalRedactorOpen);
+setImageRedactorFormSubmit(modalRedactorClose);
 
-modalRedactorCloseButton.addEventListener('click', () =>{
-  modalRedactorClose();
-});
+export {modalRedactorClose};
 

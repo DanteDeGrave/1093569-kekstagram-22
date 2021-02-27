@@ -1,8 +1,6 @@
-import {getArrayObjects} from './object-creator.js';
 import {renderModalPicture} from './modal-photo.js';
 
 const photosList = document.querySelector('.pictures');
-const photos = getArrayObjects();
 
 const renderPictures = (objects) => {
   const templatePicture = document.querySelector('#picture').content;
@@ -20,4 +18,4 @@ const renderPictures = (objects) => {
   photosList.appendChild(fragmentsPicture);
 }
 
-renderPictures(photos);
+export {renderPictures};
