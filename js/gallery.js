@@ -5,7 +5,6 @@ const photosList = document.querySelector('.pictures');
 const imgFilter = document.querySelector('.img-filters');
 const FILTER_ACTIVE_CLASS = 'img-filters__button--active';
 
-
 const cleanGallery = () => {
   const pictureItem = photosList.querySelectorAll('.picture');
   pictureItem.forEach((element) => {
@@ -26,15 +25,12 @@ const renderPicturesContent = (pictures) => {
     cleanGallery();
     FILTERS[evt.target.id](pictures);
   });
-
 }
 
 const renderPictures = (objects) => {
   const templatePicture = document.querySelector('#picture').content;
   const fragmentsPicture = document.createDocumentFragment();
-
   objects.forEach((element) => {
-
     const picture = templatePicture.querySelector('.picture').cloneNode(true);
     picture.querySelector('.picture__img').src = element.url;
     picture.querySelector('.picture__comments').textContent = String(element.comments.length);
@@ -43,9 +39,7 @@ const renderPictures = (objects) => {
       renderModalPicture(element);
     });
     fragmentsPicture.appendChild(picture);
-
   });
-
   photosList.appendChild(fragmentsPicture);
 }
 
