@@ -1,6 +1,31 @@
 import {renderModalPicture} from './modal-photo.js';
+import {FILTERS} from './filter.js';
 
 const photosList = document.querySelector('.pictures');
+const imgFilter = document.querySelector('.img-filters');
+const FILTER_ACTIVE_CLASS = 'img-filters__button--active';
+
+const cleanGallery = () => {
+  const pictureItem = photosList.querySelectorAll('.picture');
+  pictureItem.forEach((element) => {
+    element.remove();
+  });
+}
+
+const renderPicturesContent = (pictures) => {
+  renderPictures(pictures);
+  imgFilter.classList.remove('img-filters--inactive');
+  imgFilter.addEventListener('click', (evt)=>{
+    const targetClassList = evt.target.classList;
+    if (!targetClassList.contains('img-filters__button') || targetClassList.contains(FILTER_ACTIVE_CLASS)) {
+      return;
+    }
+    imgFilter.querySelector('.img-filters__button--active').classList.remove(FILTER_ACTIVE_CLASS);
+    targetClassList.add(FILTER_ACTIVE_CLASS);
+    cleanGallery();
+    FILTERS[evt.target.id](pictures);
+  });
+}
 
 const renderPictures = (objects) => {
   const templatePicture = document.querySelector('#picture').content;
@@ -18,4 +43,4 @@ const renderPictures = (objects) => {
   photosList.appendChild(fragmentsPicture);
 }
 
-export {renderPictures};
+export {renderPictures, renderPicturesContent};

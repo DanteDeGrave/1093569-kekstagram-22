@@ -1,4 +1,5 @@
 import './api.js';
+import './filter.js';
 import './util.js';
 import './gallery.js';
 import './modal-photo.js';
