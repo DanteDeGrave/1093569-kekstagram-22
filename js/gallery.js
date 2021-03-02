@@ -1,9 +1,11 @@
+/* global _:readonly */
 import {renderModalPicture} from './modal-photo.js';
 import {FILTERS} from './filter.js';
 
 const photosList = document.querySelector('.pictures');
 const imgFilter = document.querySelector('.img-filters');
 const FILTER_ACTIVE_CLASS = 'img-filters__button--active';
+const RENDER_DELAY = 500;
 
 const cleanGallery = () => {
   const pictureItem = photosList.querySelectorAll('.picture');
@@ -15,15 +17,19 @@ const cleanGallery = () => {
 const renderPicturesContent = (pictures) => {
   renderPictures(pictures);
   imgFilter.classList.remove('img-filters--inactive');
-  imgFilter.addEventListener('click', (evt)=>{
+  const debounced = _.debounce((id) => {
+    cleanGallery();
+    renderPictures(FILTERS[id](pictures))
+  }, RENDER_DELAY);
+
+  imgFilter.addEventListener('click', (evt) => {
     const targetClassList = evt.target.classList;
     if (!targetClassList.contains('img-filters__button') || targetClassList.contains(FILTER_ACTIVE_CLASS)) {
       return;
     }
     imgFilter.querySelector('.img-filters__button--active').classList.remove(FILTER_ACTIVE_CLASS);
     targetClassList.add(FILTER_ACTIVE_CLASS);
-    cleanGallery();
-    FILTERS[evt.target.id](pictures);
+    debounced(evt.target.id);
   });
 }
 
