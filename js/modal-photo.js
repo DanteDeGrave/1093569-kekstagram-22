@@ -4,7 +4,6 @@ const modalPhoto = document.querySelector('.big-picture');
 const modalPhotoImg = modalPhoto.querySelector('.big-picture__img').querySelector('img');
 const modalPhotoLikes = modalPhoto.querySelector('.likes-count');
 const modalPhotoDescription = modalPhoto.querySelector('.social__caption');
-const modalPhotoCommentsCount = modalPhoto.querySelector('.comments-count');
 const modalPhotoCommentsList = modalPhoto.querySelector('.social__comments');
 const modalButtonCancel = modalPhoto.querySelector('.big-picture__cancel');
 const commentsLoaderButton =  modalPhoto.querySelector('.social__comments-loader');
