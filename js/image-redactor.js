@@ -1,6 +1,6 @@
 import {isEscEvent} from './util.js';
 import {getSliderOn, getSliderOff} from './image-redactor-effect.js'
-import {validationDescription, validationHashtag} from './image-redactor-text.js';
+import {joinInputHashTagValue, validationDescription, validationHashtag} from './image-redactor-text.js';
 import {setImageRedactorFormSubmit} from './api.js';
 
 const imageUploadForm = document.querySelector('.img-upload__form');
@@ -56,6 +56,7 @@ const modalRedactorClose = () => {
   description.removeEventListener('input', validationDescription);
   hashtagInput.removeEventListener('keydown', onInputEscFocusOut);
   description.removeEventListener('keydown', onInputEscFocusOut);
+  hashtagInput.removeEventListener('change',joinInputHashTagValue);
   getSliderOff();
   uploadPreviewPhoto.style ='';
   uploadImage.value = '';
