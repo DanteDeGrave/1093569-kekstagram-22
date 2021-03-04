@@ -2,15 +2,15 @@ import {validationStringLength} from './util.js';
 
 const hashtagInput = document.querySelector('.text__hashtags');
 const description = document.querySelector('.text__description');
-const regular = /^#[a-zа-яё0-9]{1,19}/i;
+const regular = /^#[a-zA-Zа-яА-Я\d]{1,19}\s?$/;
 const DESCRIPTION_MAX_LENGTH = 140;
 const HASHTAG_MAX_LENGTH = 20;
 const HASHTAG_MAX_COUNT = 5;
-
-
+let arrayHashTags = [];
 
 const validationHashtag = () => {
-  let arrayHashTags = hashtagInput.value.trim().toLowerCase().split(' ');
+  // debugger;
+  arrayHashTags = hashtagInput.value.trim().toLowerCase().split(' ').filter((el) => el);
   const errors = [];
   arrayHashTags.forEach((element, index,array)=>{
     if (element.length >= HASHTAG_MAX_LENGTH) {
@@ -23,17 +23,32 @@ const validationHashtag = () => {
       errors.push('Хештег должен начинаться с # и содержать только буквы и числа и не должен состоять только из одной решетки');
     }
   });
+
+  if (errors.length > 0) {
+    hashtagInput.style.borderColor = 'red';
+    hashtagInput.style.color = 'red';
+  } else {
+    hashtagInput.style.borderColor = '';
+    hashtagInput.style.color = '';
+  }
   hashtagInput.setCustomValidity(errors[0] || '');
   hashtagInput.reportValidity();
+  hashtagInput.addEventListener('change',joinInputHashTagValue);
 }
+
+const joinInputHashTagValue = () => {hashtagInput.value = arrayHashTags.join(' ')}
 
 const validationDescription = () => {
   if (validationStringLength(description.value, DESCRIPTION_MAX_LENGTH)) {
-    description.setCustomValidity(`Длинна комментария не должна превышать ${DESCRIPTION_MAX_LENGTH} символов`);
+    description.setCustomValidity(`Вы превысили допустимое значение на ${description.value.length - DESCRIPTION_MAX_LENGTH} символов !`);
+    description.style.borderColor = 'red';
+    description.style.color = 'red';
   } else {
     description.setCustomValidity('');
+    description.style.borderColor = '';
+    description.style.color = '';
   }
   description.reportValidity();
 }
 
-export {validationHashtag, validationDescription};
+export {validationHashtag, validationDescription, joinInputHashTagValue};
