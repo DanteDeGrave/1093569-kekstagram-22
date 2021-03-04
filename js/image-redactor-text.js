@@ -8,7 +8,6 @@ const HASHTAG_MAX_LENGTH = 20;
 const HASHTAG_MAX_COUNT = 5;
 let arrayHashTags = [];
 
-
 const validationHashtag = () => {
   // debugger;
   arrayHashTags = hashtagInput.value.trim().toLowerCase().split(' ').filter((el) => el);
@@ -41,9 +40,13 @@ const joinInputHashTagValue = () => {hashtagInput.value = arrayHashTags.join(' '
 
 const validationDescription = () => {
   if (validationStringLength(description.value, DESCRIPTION_MAX_LENGTH)) {
-    description.setCustomValidity(`Длинна комментария не должна превышать ${DESCRIPTION_MAX_LENGTH} символов`);
+    description.setCustomValidity(`Вы превысили допустимое значение на ${description.value.length - DESCRIPTION_MAX_LENGTH} символов !`);
+    description.style.borderColor = 'red';
+    description.style.color = 'red';
   } else {
     description.setCustomValidity('');
+    description.style.borderColor = '';
+    description.style.color = '';
   }
   description.reportValidity();
 }
