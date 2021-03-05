@@ -9,8 +9,7 @@ const HASHTAG_MAX_COUNT = 5;
 let arrayHashTags = [];
 
 const validationHashtag = () => {
-  // debugger;
-  arrayHashTags = hashtagInput.value.trim().toLowerCase().split(' ').filter((el) => el);
+  arrayHashTags = hashtagInput.value.trim().toLowerCase().split(/ +/g);
   const errors = [];
   arrayHashTags.forEach((element, index,array)=>{
     if (element.length >= HASHTAG_MAX_LENGTH) {

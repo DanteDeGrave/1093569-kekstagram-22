@@ -1,5 +1,6 @@
 import {isEscEvent} from './util.js';
 import {getSliderOn, getSliderOff} from './image-redactor-effect.js'
+import {fileChooser} from './user-photo.js';
 import {joinInputHashTagValue, validationDescription, validationHashtag} from './image-redactor-text.js';
 import {setImageRedactorFormSubmit} from './api.js';
 
@@ -33,6 +34,7 @@ const onInputEscFocusOut = (evt) => {
 
 const modalRedactorOpen = () => {
   modalRedactorImage.classList.remove('hidden');
+  fileChooser();
   document.querySelector('body').classList.add('modal-open');
   document.addEventListener('keydown', onModalRedactorEscKeydown);
   scaleControlSmaller.addEventListener('click',onScaleControlSmaller);
@@ -60,6 +62,7 @@ const modalRedactorClose = () => {
   getSliderOff();
   uploadPreviewPhoto.style ='';
   uploadImage.value = '';
+  uploadPreviewPhoto.querySelector('img').src = 'img/upload-default-image.jpg';
   imageUploadForm.reset();
 }
 

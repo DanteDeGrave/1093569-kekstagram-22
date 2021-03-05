@@ -7,3 +7,4 @@ import './image-redactor.js';
 import './image-redactor-effect.js';
 import './image-redactor-text.js';
 import './form-modal.js';
+import './user-photo.js';

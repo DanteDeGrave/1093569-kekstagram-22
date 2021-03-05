@@ -46,7 +46,7 @@ const openModal = () => {
 
 const switchShowMoreButton = () => {
   cleanCommentaries();
-  numberDisplayedComments += 5;
+  numberDisplayedComments += COMMENTS_MIN_COUNT;
   renderCommentaries();
   commentCount.innerHTML = `${modalPhotoCommentsList.children.length} из <span class="comments-count">${commentaries.length}</span> комментариев`;
 }
