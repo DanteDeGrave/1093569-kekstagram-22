@@ -65,13 +65,13 @@ const setAttributeEffects = (min, max , step) => {
   effectLevel.setAttribute('min', `${min}`);
   effectLevel.setAttribute('max', `${max}`);
   effectLevel.setAttribute('step', `${step}`);
-}
+};
 
 const removeAttributeEffects = () => {
   effectLevel.removeAttribute('min');
   effectLevel.removeAttribute('max');
   effectLevel.removeAttribute('step');
-}
+};
 
 /* global noUiSlider:readonly */
 
@@ -100,14 +100,14 @@ const getSliderOn = () => {
   });
   sliderArea.classList.add('hidden');
   effectList.addEventListener('change', getEffect);
-}
+};
 
 const getSliderValue = (filter, unit) => {
   slider.noUiSlider.on('update', (values, handle) => {
     effectLevel.value = values[handle];
     uploadPreviewPhoto.style.filter = `${filter}(${effectLevel.value}${unit})`;
   });
-}
+};
 
 const getSliderOff = () => {
   slider.noUiSlider.destroy();
@@ -117,7 +117,7 @@ const getSliderOff = () => {
   imageUploadForm.querySelector('#effect-none').checked = true;
   removeAttributeEffects();
   effectLevel.value = '';
-}
+};
 
 const addRenderEffectRule = (obj) =>{
   uploadPreviewPhoto.classList.add(obj.className);
@@ -131,7 +131,7 @@ const addRenderEffectRule = (obj) =>{
     step: obj.step,
   });
   getSliderValue(obj.filter, obj.unit);
-}
+};
 
 const getEffect = (evt)=> {
   if (evt.target.id === filterEffects.original.name) {
@@ -170,6 +170,6 @@ const getEffect = (evt)=> {
       addRenderEffectRule(filterEffects.heat);
       break;
   }
-}
+};
 
 export {getSliderOn, getSliderOff};

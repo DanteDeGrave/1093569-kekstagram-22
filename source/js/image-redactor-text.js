@@ -1,14 +1,14 @@
-import {validationStringLength} from './util.js';
+import {validateStringLength} from './util.js';
 
-const hashtagInput = document.querySelector('.text__hashtags');
-const description = document.querySelector('.text__description');
-const regular = /^#[a-zA-Zа-яА-Я\d]{1,19}\s?$/;
 const DESCRIPTION_MAX_LENGTH = 140;
 const HASHTAG_MAX_LENGTH = 20;
 const HASHTAG_MAX_COUNT = 5;
+const hashtagInput = document.querySelector('.text__hashtags');
+const description = document.querySelector('.text__description');
+const regular = /^#[a-zA-Zа-яА-Я\d]{1,19}\s?$/;
 let arrayHashTags = [];
 
-const validationHashtag = () => {
+const validateHashtag = () => {
   arrayHashTags = hashtagInput.value.trim().toLowerCase().split(/ +/g);
   const errors = [];
   arrayHashTags.forEach((element, index,array)=>{
@@ -22,8 +22,7 @@ const validationHashtag = () => {
       errors.push('Хештег должен начинаться с # и содержать только буквы и числа и не должен состоять только из одной решетки');
     }
   });
-
-  if (errors.length > 0) {
+  if (errors.length) {
     hashtagInput.style.borderColor = 'red';
     hashtagInput.style.color = 'red';
   } else {
@@ -33,12 +32,12 @@ const validationHashtag = () => {
   hashtagInput.setCustomValidity(errors[0] || '');
   hashtagInput.reportValidity();
   hashtagInput.addEventListener('change',joinInputHashTagValue);
-}
+};
 
-const joinInputHashTagValue = () => {hashtagInput.value = arrayHashTags.join(' ')}
+const joinInputHashTagValue = () => {hashtagInput.value = arrayHashTags.join(' ')};
 
 const validationDescription = () => {
-  if (validationStringLength(description.value, DESCRIPTION_MAX_LENGTH)) {
+  if (validateStringLength(description.value, DESCRIPTION_MAX_LENGTH)) {
     description.setCustomValidity(`Вы превысили допустимое значение на ${description.value.length - DESCRIPTION_MAX_LENGTH} символов !`);
     description.style.borderColor = 'red';
     description.style.color = 'red';
@@ -48,6 +47,6 @@ const validationDescription = () => {
     description.style.color = '';
   }
   description.reportValidity();
-}
+};
 
-export {validationHashtag, validationDescription, joinInputHashTagValue};
+export {validateHashtag, validationDescription, joinInputHashTagValue};

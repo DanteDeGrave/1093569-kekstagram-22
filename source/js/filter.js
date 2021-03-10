@@ -1,8 +1,6 @@
-
 import {getRandomUniqNumber} from './util.js';
 
 const RANDOM_FILTER_COUNT_PHOTO = 10;
-
 const FILTERS = {
   'filter-default': (pictures) => {
     return pictures
@@ -19,4 +17,5 @@ const FILTERS = {
     return pictures.slice().sort((a, b) => b.comments.length - a.comments.length)
   },
 };
+
 export {FILTERS};

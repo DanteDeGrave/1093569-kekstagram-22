@@ -1,11 +1,10 @@
-
 const isEscEvent = (evt) => {
   return evt.key === ('Escape' || 'Esc');
-}
+};
 
-const validationStringLength = (string, maxLength) => {
+const validateStringLength = (string, maxLength) => {
   return string.length > maxLength;
-}
+};
 
 const getRandomIntNumber = (min, max) => {
   if (min <= max) {
@@ -14,7 +13,7 @@ const getRandomIntNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   return alert('Минимальное значение должно быть меньше или рано максимальному');
-}
+};
 
 const getRandomUniqNumber = (min, max) => {
   const ids = [];
@@ -30,6 +29,6 @@ const getRandomUniqNumber = (min, max) => {
     ids.push(currentValue);
     return currentValue;
   }
-}
+};
 
-export {isEscEvent, validationStringLength, getRandomUniqNumber};
+export {isEscEvent, validateStringLength, getRandomUniqNumber};

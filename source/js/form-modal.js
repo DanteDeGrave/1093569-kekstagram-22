@@ -2,7 +2,7 @@ import {isEscEvent} from './util.js';
 
 const mainTag = document.querySelector('main');
 
-const messageUploadForm = (designation)=> {
+const showMessageUploadForm = (designation)=> {
   const template = document.querySelector(`#${designation}`).content;
   const message = template.querySelector(`.${designation}`).cloneNode(true);
   message.style.zIndex = '100';
@@ -14,7 +14,7 @@ const messageUploadForm = (designation)=> {
       mainTag.removeChild(message);
       document.removeEventListener('keydown', isEscOnMessage);
     }
-  }
+  };
 
   button.addEventListener('click', ()=>{
     mainTag.removeChild(message);
@@ -23,9 +23,9 @@ const messageUploadForm = (designation)=> {
 
   message.addEventListener('click',isEscOnMessage);
   document.addEventListener('keydown', isEscOnMessage);
-}
+};
 
-const messageErrorDownloadData = ()=> {
+const showMessageErrorDownloadData = ()=> {
   const template = document.querySelector('#error').content;
   const message = template.querySelector('.error').cloneNode(true);
   message.style.zIndex = '100';
@@ -39,7 +39,7 @@ const messageErrorDownloadData = ()=> {
       mainTag.removeChild(message);
       document.removeEventListener('keydown', isEscOnMessage);
     }
-  }
+  };
   errorButton.addEventListener('click', ()=>{
     mainTag.removeChild(message);
     document.removeEventListener('keydown', isEscOnMessage);
@@ -47,6 +47,6 @@ const messageErrorDownloadData = ()=> {
 
   message.addEventListener('click',isEscOnMessage);
   document.addEventListener('keydown', isEscOnMessage);
-}
+};
 
-export {messageUploadForm, messageErrorDownloadData};
+export {showMessageUploadForm, showMessageErrorDownloadData};

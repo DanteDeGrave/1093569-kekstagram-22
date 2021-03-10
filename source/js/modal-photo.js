@@ -1,5 +1,6 @@
 import {isEscEvent} from './util.js';
 
+const COMMENTS_MIN_COUNT = 5;
 const modalPhoto = document.querySelector('.big-picture');
 const modalPhotoImg = modalPhoto.querySelector('.big-picture__img').querySelector('img');
 const modalPhotoLikes = modalPhoto.querySelector('.likes-count');
@@ -8,7 +9,6 @@ const modalPhotoCommentsList = modalPhoto.querySelector('.social__comments');
 const modalButtonCancel = modalPhoto.querySelector('.big-picture__cancel');
 const commentsLoaderButton =  modalPhoto.querySelector('.social__comments-loader');
 const commentCount = modalPhoto.querySelector('.social__comment-count');
-const COMMENTS_MIN_COUNT = 5;
 let numberDisplayedComments = COMMENTS_MIN_COUNT;
 let commentaries = [];
 
@@ -16,14 +16,14 @@ const onPopUpEscKeydown = (evt) => {
   if (isEscEvent(evt)) {
     closeModal();
   }
-}
+};
 
 const cleanCommentaries = () => {
   const comment = modalPhotoCommentsList.querySelectorAll('.social__comment');
   comment.forEach((element) => {
     element.remove();
   });
-}
+};
 
 const closeModal = () => {
   modalPhoto.classList.add('hidden');
@@ -34,7 +34,7 @@ const closeModal = () => {
   cleanCommentaries();
   commentsLoaderButton.removeEventListener('click', switchShowMoreButton);
   numberDisplayedComments = COMMENTS_MIN_COUNT;
-}
+};
 
 const openModal = () => {
   modalPhoto.classList.remove('hidden');
@@ -42,23 +42,23 @@ const openModal = () => {
   commentCount.classList.add('hidden');
   document.querySelector('body').classList.add('modal-open');
   modalButtonCancel.addEventListener('click', closeModal);
-}
+};
 
 const switchShowMoreButton = () => {
   cleanCommentaries();
   numberDisplayedComments += COMMENTS_MIN_COUNT;
   renderCommentaries();
   commentCount.innerHTML = `${modalPhotoCommentsList.children.length} из <span class="comments-count">${commentaries.length}</span> комментариев`;
-}
+};
 
 const openCommentariesButton = () => {
   commentsLoaderButton.classList.remove('hidden');
   commentsLoaderButton.addEventListener('click', switchShowMoreButton);
-}
+};
 
 const closeCommentariesButton = () => {
   commentsLoaderButton.classList.add('hidden');
-}
+};
 
 const renderModalPicture = (object) => {
   openModal();
@@ -76,7 +76,7 @@ const renderModalPicture = (object) => {
     commentCount.classList.remove('hidden');
   }
   commentCount.innerHTML = `${modalPhotoCommentsList.children.length} из <span class="comments-count">${commentaries.length}</span> комментариев`;
-}
+};
 
 const renderCommentaries = () => {
   commentaries.slice(0, numberDisplayedComments).forEach((element) => {
@@ -89,6 +89,6 @@ const renderCommentaries = () => {
       closeCommentariesButton();
     }
   });
-}
+};
 
 export {renderModalPicture};
