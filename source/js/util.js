@@ -31,11 +31,4 @@ const getRandomUniqNumber = (min, max) => {
   }
 };
 
-const onInputEscKeydown = (evt) => {
-  if (isEscEvent(evt)) {
-    evt.stopPropagation();
-    evt.target.blur();
-  }
-};
-
-export {isEscEvent, validateStringLength, getRandomUniqNumber, onInputEscKeydown};
+export {isEscEvent, validateStringLength, getRandomUniqNumber};

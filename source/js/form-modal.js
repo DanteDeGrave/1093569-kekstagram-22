@@ -18,13 +18,10 @@ const showMessageUploadForm = (designation) => {
     mainTag.removeChild(message);
     document.removeEventListener('keydown', onMessageUploadEscKeydown);
   };
-  button.addEventListener('click', () => {
-    mainTag.removeChild(message);
-    document.removeEventListener('keydown', onMessageUploadEscKeydown);
-  });
-  message.addEventListener('click', onMessageUploadClick);
+  button.addEventListener('click', onMessageUploadClick);
   document.addEventListener('keydown', onMessageUploadEscKeydown);
 };
+
 const showMessageErrorDownloadData = () => {
   const template = document.querySelector('#error').content;
   const message = template.querySelector('.error').cloneNode(true);
@@ -45,7 +42,6 @@ const showMessageErrorDownloadData = () => {
     document.removeEventListener('keydown', onMessageErrorEscKeydown);
   };
   errorButton.addEventListener('click', onMessageErrorClick);
-  message.addEventListener('click', onMessageErrorClick);
   document.addEventListener('keydown', onMessageErrorEscKeydown);
 };
 

@@ -1,4 +1,4 @@
-import {isEscEvent, onInputEscKeydown} from './util.js';
+import {isEscEvent} from './util.js';
 import {activateFilter, deactivateFilter} from './image-redactor-effect.js'
 import {selectFile} from './user-photo.js';
 import {onHashtagChangeValue, onDescriptionInput, onHashtagInput} from './image-redactor-text.js';
@@ -20,7 +20,7 @@ const description = imageUploadForm.querySelector('.text__description');
 let scaleControlValueInt = parseInt(scaleControlInput.value);
 
 const onModalRedactorEscKeydown = (evt) => {
-  if (isEscEvent(evt)) {
+  if (isEscEvent(evt) && document.activeElement !== hashtagInput && document.activeElement !== description) {
     modalRedactorClose();
   }
 };
@@ -42,8 +42,6 @@ const modalRedactorOpen = () => {
   scaleControlBigger.addEventListener('click',onScaleControlBiggerClick);
   hashtagInput.addEventListener('input',onHashtagInput);
   description.addEventListener('input', onDescriptionInput);
-  hashtagInput.addEventListener('keydown', onInputEscKeydown);
-  description.addEventListener('keydown', onInputEscKeydown);
   activateFilter();
   scaleControlValueInt = parseInt(scaleControlInput.value);
   modalRedactorCloseButton.addEventListener('click',onCloseButtonClick);
@@ -57,8 +55,6 @@ const modalRedactorClose = () => {
   scaleControlBigger.removeEventListener('click',onScaleControlBiggerClick);
   hashtagInput.removeEventListener('input',onHashtagInput);
   description.removeEventListener('input', onDescriptionInput);
-  hashtagInput.removeEventListener('keydown', onInputEscKeydown);
-  description.removeEventListener('keydown', onInputEscKeydown);
   hashtagInput.removeEventListener('change',onHashtagChangeValue);
   deactivateFilter();
   uploadPreviewPhoto.style ='';
