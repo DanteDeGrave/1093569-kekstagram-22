@@ -1,4 +1,3 @@
-
 const imageUploadForm = document.querySelector('.img-upload__form');
 const sliderArea = imageUploadForm.querySelector('.img-upload__effect-level');
 const effectList = imageUploadForm.querySelector('.effects__list');
@@ -61,7 +60,7 @@ const filterEffects = {
   },
 };
 
-const setAttributeEffects = (min, max , step) => {
+const setAttributeEffects = (min, max, step) => {
   effectLevel.setAttribute('min', `${min}`);
   effectLevel.setAttribute('max', `${max}`);
   effectLevel.setAttribute('step', `${step}`);
@@ -77,7 +76,7 @@ const removeAttributeEffects = () => {
 
 const slider = imageUploadForm.querySelector('.effect-level__slider');
 
-const getSliderOn = () => {
+const activateFilter = () => {
   noUiSlider.create(slider, {
     range: {
       min: 0,
@@ -87,31 +86,31 @@ const getSliderOn = () => {
     step: 1,
     connect: 'lower',
     format: {
-      to: function (value) {
+      to: (value) => {
         if (Number.isInteger(value)) {
           return value.toFixed(0);
         }
         return value.toFixed(1);
       },
-      from: function (value) {
+      from: (value) => {
         return parseFloat(value);
       },
     },
   });
   sliderArea.classList.add('hidden');
-  effectList.addEventListener('change', getEffect);
+  effectList.addEventListener('change', onEffectClick);
 };
 
-const getSliderValue = (filter, unit) => {
+const changeSliderValue = (filter, unit) => {
   slider.noUiSlider.on('update', (values, handle) => {
     effectLevel.value = values[handle];
     uploadPreviewPhoto.style.filter = `${filter}(${effectLevel.value}${unit})`;
   });
 };
 
-const getSliderOff = () => {
+const deactivateFilter = () => {
   slider.noUiSlider.destroy();
-  effectList.removeEventListener('change', getEffect);
+  effectList.removeEventListener('change', onEffectClick);
   uploadPreviewPhoto.style.filter = filterEffects.original.filter;
   uploadPreviewPhoto.className = 'img-upload__preview';
   imageUploadForm.querySelector('#effect-none').checked = true;
@@ -119,7 +118,7 @@ const getSliderOff = () => {
   effectLevel.value = '';
 };
 
-const addRenderEffectRule = (obj) =>{
+const addRenderEffectRule = (obj) => {
   uploadPreviewPhoto.classList.add(obj.className);
   setAttributeEffects(obj.min, obj.max, obj.step);
   slider.noUiSlider.updateOptions({
@@ -130,10 +129,10 @@ const addRenderEffectRule = (obj) =>{
     start: obj.start,
     step: obj.step,
   });
-  getSliderValue(obj.filter, obj.unit);
+  changeSliderValue(obj.filter, obj.unit);
 };
 
-const getEffect = (evt)=> {
+const onEffectClick = (evt) => {
   if (evt.target.id === filterEffects.original.name) {
     sliderArea.classList.add('hidden');
   } else {
@@ -172,4 +171,4 @@ const getEffect = (evt)=> {
   }
 };
 
-export {getSliderOn, getSliderOff};
+export {activateFilter, deactivateFilter};

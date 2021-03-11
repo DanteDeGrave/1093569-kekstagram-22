@@ -25,38 +25,42 @@ const cleanCommentaries = () => {
   });
 };
 
+const onCloseButtonClick = () => {
+  closeModal();
+};
+
 const closeModal = () => {
   modalPhoto.classList.add('hidden');
-  document.removeEventListener('keydown',onPopUpEscKeydown);
+  document.removeEventListener('keydown', onPopUpEscKeydown);
   document.querySelector('body').classList.remove('modal-open');
-  modalButtonCancel.removeEventListener('click', closeModal);
-  closeCommentariesButton();
+  modalButtonCancel.removeEventListener('click', onCloseButtonClick);
+  removeCommentariesButton();
   cleanCommentaries();
-  commentsLoaderButton.removeEventListener('click', switchShowMoreButton);
+  commentsLoaderButton.removeEventListener('click', upShowCommentsClick);
   numberDisplayedComments = COMMENTS_MIN_COUNT;
 };
 
 const openModal = () => {
   modalPhoto.classList.remove('hidden');
-  document.addEventListener('keydown',onPopUpEscKeydown);
+  document.addEventListener('keydown', onPopUpEscKeydown);
   commentCount.classList.add('hidden');
   document.querySelector('body').classList.add('modal-open');
-  modalButtonCancel.addEventListener('click', closeModal);
+  modalButtonCancel.addEventListener('click', onCloseButtonClick);
 };
 
-const switchShowMoreButton = () => {
+const upShowCommentsClick = () => {
   cleanCommentaries();
   numberDisplayedComments += COMMENTS_MIN_COUNT;
   renderCommentaries();
   commentCount.innerHTML = `${modalPhotoCommentsList.children.length} из <span class="comments-count">${commentaries.length}</span> комментариев`;
 };
 
-const openCommentariesButton = () => {
+const addCommentariesButton = () => {
   commentsLoaderButton.classList.remove('hidden');
-  commentsLoaderButton.addEventListener('click', switchShowMoreButton);
+  commentsLoaderButton.addEventListener('click', upShowCommentsClick);
 };
 
-const closeCommentariesButton = () => {
+const removeCommentariesButton = () => {
   commentsLoaderButton.classList.add('hidden');
 };
 
@@ -72,7 +76,7 @@ const renderModalPicture = (object) => {
     renderCommentaries();
   }
   if (commentaries.length > COMMENTS_MIN_COUNT) {
-    openCommentariesButton();
+    addCommentariesButton();
     commentCount.classList.remove('hidden');
   }
   commentCount.innerHTML = `${modalPhotoCommentsList.children.length} из <span class="comments-count">${commentaries.length}</span> комментариев`;
@@ -86,7 +90,7 @@ const renderCommentaries = () => {
       <p class="social__text">${element.message}</p>`;
     modalPhotoCommentsList.appendChild(item);
     if (modalPhotoCommentsList.querySelectorAll('.social__comment').length === commentaries.length ) {
-      closeCommentariesButton();
+      removeCommentariesButton();
     }
   });
 };

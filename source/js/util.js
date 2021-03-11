@@ -1,5 +1,5 @@
 const isEscEvent = (evt) => {
-  return evt.key === ('Escape' || 'Esc');
+  return evt.key === ('Escape');
 };
 
 const validateStringLength = (string, maxLength) => {
@@ -31,4 +31,11 @@ const getRandomUniqNumber = (min, max) => {
   }
 };
 
-export {isEscEvent, validateStringLength, getRandomUniqNumber};
+const onInputEscKeydown = (evt) => {
+  if (isEscEvent(evt)) {
+    evt.stopPropagation();
+    evt.target.blur();
+  }
+};
+
+export {isEscEvent, validateStringLength, getRandomUniqNumber, onInputEscKeydown};

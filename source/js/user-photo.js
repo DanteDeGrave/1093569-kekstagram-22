@@ -17,4 +17,4 @@ const selectFile = () => {
   }
 };
 
-export {selectFile}
+export {selectFile};

@@ -1,6 +1,6 @@
 /* global _:readonly */
 import {renderModalPicture} from './modal-photo.js';
-import {FILTERS} from './filter.js';
+import {filter} from './filter.js';
 
 const FILTER_ACTIVE_CLASS = 'img-filters__button--active';
 const RENDER_DELAY = 500;
@@ -19,7 +19,7 @@ const renderPicturesContent = (pictures) => {
   imgFilter.classList.remove('img-filters--inactive');
   const debounced = _.debounce((id) => {
     cleanGallery();
-    renderPictures(FILTERS[id](pictures))
+    renderPictures(filter[id](pictures))
   }, RENDER_DELAY);
 
   imgFilter.addEventListener('click', (evt) => {
