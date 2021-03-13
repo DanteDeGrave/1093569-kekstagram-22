@@ -25,7 +25,7 @@ const cleanCommentaries = () => {
   });
 };
 
-const onCloseButtonClick = () => {
+const onModalButtonCancelClick = () => {
   closeModal();
 };
 
@@ -33,10 +33,10 @@ const closeModal = () => {
   modalPhoto.classList.add('hidden');
   document.removeEventListener('keydown', onPopUpEscKeydown);
   document.querySelector('body').classList.remove('modal-open');
-  modalButtonCancel.removeEventListener('click', onCloseButtonClick);
+  modalButtonCancel.removeEventListener('click', onModalButtonCancelClick);
   removeCommentariesButton();
   cleanCommentaries();
-  commentsLoaderButton.removeEventListener('click', upShowCommentsClick);
+  commentsLoaderButton.removeEventListener('click', onCommentsLoaderButtonClick);
   numberDisplayedComments = COMMENTS_MIN_COUNT;
 };
 
@@ -45,10 +45,10 @@ const openModal = () => {
   document.addEventListener('keydown', onPopUpEscKeydown);
   commentCount.classList.add('hidden');
   document.querySelector('body').classList.add('modal-open');
-  modalButtonCancel.addEventListener('click', onCloseButtonClick);
+  modalButtonCancel.addEventListener('click', onModalButtonCancelClick);
 };
 
-const upShowCommentsClick = () => {
+const onCommentsLoaderButtonClick = () => {
   cleanCommentaries();
   numberDisplayedComments += COMMENTS_MIN_COUNT;
   renderCommentaries();
@@ -57,7 +57,7 @@ const upShowCommentsClick = () => {
 
 const addCommentariesButton = () => {
   commentsLoaderButton.classList.remove('hidden');
-  commentsLoaderButton.addEventListener('click', upShowCommentsClick);
+  commentsLoaderButton.addEventListener('click', onCommentsLoaderButtonClick);
 };
 
 const removeCommentariesButton = () => {

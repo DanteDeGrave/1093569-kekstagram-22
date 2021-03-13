@@ -26,7 +26,7 @@ const onHashtagInput = () => {
       errors.push(warning.regulation);
     }
   });
-  if (arrayHashTags.length > HASHTAG_MAX_COUNT && !errors.includes(warning.quantity)) {
+  if (arrayHashTags.length > HASHTAG_MAX_COUNT) {
     errors.push(warning.quantity);
   }
   if (errors.length) {
@@ -38,10 +38,10 @@ const onHashtagInput = () => {
   }
   hashtagInput.setCustomValidity(errors.join(', ') || '');
   hashtagInput.reportValidity();
-  hashtagInput.addEventListener('change',onHashtagChangeValue);
+  hashtagInput.addEventListener('change', onHashtagInputChange);
 };
 
-const onHashtagChangeValue = () => {
+const onHashtagInputChange = () => {
   hashtagInput.value = arrayHashTags.join(' ')
 };
 
@@ -58,4 +58,4 @@ const onDescriptionInput = () => {
   description.reportValidity();
 };
 
-export {onHashtagInput, onDescriptionInput, onHashtagChangeValue};
+export {onHashtagInput, onDescriptionInput, onHashtagInputChange};

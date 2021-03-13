@@ -98,7 +98,7 @@ const activateFilter = () => {
     },
   });
   sliderArea.classList.add('hidden');
-  effectList.addEventListener('change', onEffectClick);
+  effectList.addEventListener('change', onEffectListChange);
 };
 
 const changeSliderValue = (filter, unit) => {
@@ -110,7 +110,7 @@ const changeSliderValue = (filter, unit) => {
 
 const deactivateFilter = () => {
   slider.noUiSlider.destroy();
-  effectList.removeEventListener('change', onEffectClick);
+  effectList.removeEventListener('change', onEffectListChange);
   uploadPreviewPhoto.style.filter = filterEffects.original.filter;
   uploadPreviewPhoto.className = 'img-upload__preview';
   imageUploadForm.querySelector('#effect-none').checked = true;
@@ -132,7 +132,7 @@ const addRenderEffectRule = (obj) => {
   changeSliderValue(obj.filter, obj.unit);
 };
 
-const onEffectClick = (evt) => {
+const onEffectListChange = (evt) => {
   if (evt.target.id === filterEffects.original.name) {
     sliderArea.classList.add('hidden');
   } else {

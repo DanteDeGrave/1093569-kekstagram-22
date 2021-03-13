@@ -1,7 +1,7 @@
 import {isEscEvent} from './util.js';
 import {activateFilter, deactivateFilter} from './image-redactor-effect.js'
 import {selectFile} from './user-photo.js';
-import {onHashtagChangeValue, onDescriptionInput, onHashtagInput} from './image-redactor-text.js';
+import {onHashtagInputChange, onDescriptionInput, onHashtagInput} from './image-redactor-text.js';
 import {setImageRedactorFormSubmit} from './api.js';
 
 const MIN_VALUE_SCALE_CONTROL = 25;
@@ -25,7 +25,7 @@ const onModalRedactorEscKeydown = (evt) => {
   }
 };
 
-const onUploadFileInputClick = () => {
+const onUploadImageChange = () => {
   modalRedactorOpen();
 };
 
@@ -38,30 +38,30 @@ const modalRedactorOpen = () => {
   selectFile();
   document.querySelector('body').classList.add('modal-open');
   document.addEventListener('keydown', onModalRedactorEscKeydown);
-  scaleControlSmaller.addEventListener('click',onScaleControlSmallerClick);
-  scaleControlBigger.addEventListener('click',onScaleControlBiggerClick);
-  hashtagInput.addEventListener('input',onHashtagInput);
+  scaleControlSmaller.addEventListener('click', onScaleControlSmallerClick);
+  scaleControlBigger.addEventListener('click', onScaleControlBiggerClick);
+  hashtagInput.addEventListener('input', onHashtagInput);
   description.addEventListener('input', onDescriptionInput);
   activateFilter();
   scaleControlValueInt = parseInt(scaleControlInput.value);
-  modalRedactorCloseButton.addEventListener('click',onCloseButtonClick);
+  modalRedactorCloseButton.addEventListener('click', onCloseButtonClick);
 };
 
 const modalRedactorClose = () => {
   modalRedactorImage.classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
   document.removeEventListener('keydown', onModalRedactorEscKeydown);
-  scaleControlSmaller.removeEventListener('click',onScaleControlSmallerClick);
-  scaleControlBigger.removeEventListener('click',onScaleControlBiggerClick);
-  hashtagInput.removeEventListener('input',onHashtagInput);
+  scaleControlSmaller.removeEventListener('click', onScaleControlSmallerClick);
+  scaleControlBigger.removeEventListener('click', onScaleControlBiggerClick);
+  hashtagInput.removeEventListener('input', onHashtagInput);
   description.removeEventListener('input', onDescriptionInput);
-  hashtagInput.removeEventListener('change',onHashtagChangeValue);
+  hashtagInput.removeEventListener('change', onHashtagInputChange);
   deactivateFilter();
   uploadPreviewPhoto.style ='';
   uploadImage.value = '';
   uploadPreviewPhoto.querySelector('img').src = 'img/upload-default-image.jpg';
   imageUploadForm.reset();
-  modalRedactorCloseButton.removeEventListener('click',modalRedactorClose);
+  modalRedactorCloseButton.removeEventListener('click', modalRedactorClose);
 };
 
 const onScaleControlSmallerClick = () => {
@@ -86,5 +86,5 @@ const onScaleControlBiggerClick = () => {
   }
 };
 
-uploadImage.addEventListener('change', onUploadFileInputClick);
+uploadImage.addEventListener('change', onUploadImageChange);
 setImageRedactorFormSubmit(modalRedactorClose);

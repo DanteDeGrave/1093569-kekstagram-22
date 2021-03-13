@@ -11,7 +11,7 @@ fetch(SERVER_URL_DOWNLOAD_DATA)
 
 const setImageRedactorFormSubmit = (onSuccess) => {
   const imageUploadForm = document.querySelector('.img-upload__form');
-  imageUploadForm.addEventListener('submit',(evt) => {
+  imageUploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
 

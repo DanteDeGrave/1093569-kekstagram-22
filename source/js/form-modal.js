@@ -8,18 +8,18 @@ const showMessageUploadForm = (designation) => {
   message.style.zIndex = '100';
   mainTag.appendChild(message);
   const button = message.querySelector(`.${designation}__button`);
-  const onMessageUploadEscKeydown = (evt) => {
+  const onDocumentKeydown = (evt) => {
     if (isEscEvent(evt) || evt.target.className === designation) {
       mainTag.removeChild(message);
-      document.removeEventListener('keydown', onMessageUploadEscKeydown);
+      document.removeEventListener('keydown', onDocumentKeydown);
     }
   };
-  const onMessageUploadClick = () => {
+  const onButtonClick = () => {
     mainTag.removeChild(message);
-    document.removeEventListener('keydown', onMessageUploadEscKeydown);
+    document.removeEventListener('keydown', onDocumentKeydown);
   };
-  button.addEventListener('click', onMessageUploadClick);
-  document.addEventListener('keydown', onMessageUploadEscKeydown);
+  button.addEventListener('click', onButtonClick);
+  document.addEventListener('keydown', onDocumentKeydown);
 };
 
 const showMessageErrorDownloadData = () => {
@@ -31,18 +31,18 @@ const showMessageErrorDownloadData = () => {
   const errorTitle = message.querySelector('.error__title');
   errorTitle.textContent = 'Нет связи с сервером!';
   errorButton.textContent = 'Попробуйте зайти позже';
-  const onMessageErrorEscKeydown = (evt) => {
+  const onDocumentKeydown = (evt) => {
     if (isEscEvent(evt) || evt.target.className === 'error') {
       mainTag.removeChild(message);
-      document.removeEventListener('keydown', onMessageErrorEscKeydown);
+      document.removeEventListener('keydown', onDocumentKeydown);
     }
   };
-  const onMessageErrorClick = () => {
+  const onErrorButtonClick = () => {
     mainTag.removeChild(message);
-    document.removeEventListener('keydown', onMessageErrorEscKeydown);
+    document.removeEventListener('keydown', onDocumentKeydown);
   };
-  errorButton.addEventListener('click', onMessageErrorClick);
-  document.addEventListener('keydown', onMessageErrorEscKeydown);
+  errorButton.addEventListener('click', onErrorButtonClick);
+  document.addEventListener('keydown', onDocumentKeydown);
 };
 
 export {showMessageUploadForm, showMessageErrorDownloadData};
